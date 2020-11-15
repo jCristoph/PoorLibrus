@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30709.132
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Baza_Danych", "Baza_Danych\Baza_Danych.csproj", "{82B2B053-C546-47B1-9F7C-1D525087C9B2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Baza_DanychBiblioteka", "Baza_DanychBiblioteka\Baza_DanychBiblioteka.csproj", "{E8A56CD1-E412-4B1A-89AB-8A1AFD57C2D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Decryption", "..\..\..\Dysk Google\_Studia\_Semestr5\POD\VigenereCipher\Decryption\Decryption.csproj", "{BB12A0E9-A3EC-49BF-BE8C-41C2F91E8D78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption", "..\..\..\Dysk Google\_Studia\_Semestr5\POD\VigenereCipher\Encryption\Encryption.csproj", "{027F2761-7B70-4FA7-8E22-58353F3834B6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alphabet", "..\..\..\Dysk Google\_Studia\_Semestr5\POD\VigenereCipher\Matrix\Alphabet.csproj", "{65BD1F28-D656-4427-8785-63C96BAC786F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82B2B053-C546-47B1-9F7C-1D525087C9B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82B2B053-C546-47B1-9F7C-1D525087C9B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82B2B053-C546-47B1-9F7C-1D525087C9B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82B2B053-C546-47B1-9F7C-1D525087C9B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8A56CD1-E412-4B1A-89AB-8A1AFD57C2D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8A56CD1-E412-4B1A-89AB-8A1AFD57C2D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8A56CD1-E412-4B1A-89AB-8A1AFD57C2D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8A56CD1-E412-4B1A-89AB-8A1AFD57C2D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB12A0E9-A3EC-49BF-BE8C-41C2F91E8D78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB12A0E9-A3EC-49BF-BE8C-41C2F91E8D78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB12A0E9-A3EC-49BF-BE8C-41C2F91E8D78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB12A0E9-A3EC-49BF-BE8C-41C2F91E8D78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{027F2761-7B70-4FA7-8E22-58353F3834B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{027F2761-7B70-4FA7-8E22-58353F3834B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{027F2761-7B70-4FA7-8E22-58353F3834B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{027F2761-7B70-4FA7-8E22-58353F3834B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65BD1F28-D656-4427-8785-63C96BAC786F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65BD1F28-D656-4427-8785-63C96BAC786F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65BD1F28-D656-4427-8785-63C96BAC786F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65BD1F28-D656-4427-8785-63C96BAC786F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {22483C1D-85AF-47A6-A7B2-EB6B07782A8E}
+	EndGlobalSection
+EndGlobal
