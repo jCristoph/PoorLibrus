@@ -70,9 +70,7 @@ namespace DatabaseLibrary
         }
 
         public User getUser(int i) {
-            User user = new User();
-            
-            return user;
+            return userDatabase[i];
         }
     }
 }

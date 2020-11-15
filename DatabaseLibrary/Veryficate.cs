@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DatabaseLibrary
 {
-    class Veryfication
+    public class Veryfication
     {
         private Base savedBase;
         private String login;
@@ -15,6 +15,17 @@ namespace DatabaseLibrary
             savedBase = base_;
             password = password_;
             login = login_;
+        }
+        public string Login
+        {
+            get { return login; }
+            set { login = value; }
+        }
+
+        public string Pass
+        {
+            get { return password; }
+            set { password = value; }
         }
 
         public bool veryficate()
