@@ -4,18 +4,31 @@ using System.Text;
 
 namespace DatabaseLibrary
 {
-    class Veryficate
+    class Veryfication
     {
-        Base savedBase;
-        String login;
-        String password;
+        private Base savedBase;
+        private String login;
+        private String password;
         
-        Veryficate(Base base_, String login_, String password_)
+        public Veryfication(Base base_, String login_, String password_)
         {
             savedBase = base_;
             password = password_;
             login = login_;
         }
 
+        public bool veryficate()
+        {
+            bool exist = false;
+            User client = new User();
+            for (int i = 0; i < savedBase.length(); i++)
+            {
+                client = savedBase.getUser(i);
+                if (client.Login == login && client.Pass == password)
+                    exist = true;
+            }
+
+            return exist;
+        }
     }
 }

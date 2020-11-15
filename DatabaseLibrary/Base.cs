@@ -14,7 +14,7 @@ namespace DatabaseLibrary
             try
             {
                 Files.readFile(userDatabase);
-            } 
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e);
@@ -62,6 +62,17 @@ namespace DatabaseLibrary
         {
             Files.saveFile(userDatabase);
             Console.WriteLine("Zapisano do pliku!");
+        }
+
+        public int length()
+        {
+            return userDatabase.Count;
+        }
+
+        public User getUser(int i) {
+            User user = new User();
+            
+            return user;
         }
     }
 }

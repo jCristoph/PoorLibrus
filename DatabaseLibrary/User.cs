@@ -90,5 +90,16 @@ namespace DatabaseLibrary
             }
 			return sb.ToString();
         }
+
+		public string Login {
+			get { return login; }
+			set { login = value; }
+		}
+
+		public string Pass
+		{
+			get { return password; }
+			set { password = value; }
+		}
 	}
 }
