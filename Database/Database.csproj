@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <StartupObject>Baza_Danych.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
