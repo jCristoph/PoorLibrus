@@ -6,34 +6,34 @@ using System.Text;
 using Decryption;
 using Encryption;
 
-namespace Baza_DanychBiblioteka
+namespace DatabaseLibrary
 {
-	public class Pliki
+	public class Files
 	{
 		private static string key = "sekret";
-		public static void zapiszDoPliku(List<Uzytkownik> bazaUzytkownikow)
+		public static void saveFile(List<User> userDatabase)
 		{
 			FileStream fs = File.OpenWrite("userdatabase.txt");
 			Encrypter e = new Encrypter(key);
-			for(int i =0; i < bazaUzytkownikow.Count; i++)
+			for(int i =0; i < userDatabase.Count; i++)
             {
-				AddText(fs, e.start(bazaUzytkownikow[i].ToString()));
+				AddText(fs, e.start(userDatabase[i].ToString()));
 				AddText(fs, "\n");
 			}
 			fs.Close();
 		}
 
-        public static List<Uzytkownik> odczytajZPliku(List<Uzytkownik> tablica)
+        public static List<User> readFile(List<User> array)
 		{
 			var sr = new StreamReader("userdatabase.txt");
 			string line;
 			Decrypter d = new Decrypter(key);
 			while((line = sr.ReadLine()) != null)
             {
-				tablica.Add(new Uzytkownik(d.start(line)));
+				array.Add(new User(d.start(line)));
             }
 			sr.Close();
-			return tablica;
+			return array;
 		}
 		private static void AddText(FileStream fs, string value)
 		{

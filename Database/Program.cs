@@ -1,5 +1,5 @@
 ﻿using System;
-using Baza_DanychBiblioteka;
+using DatabaseLibrary;
 
 namespace Baza_Danych
 {
@@ -7,7 +7,7 @@ namespace Baza_Danych
     {
         static void Main(string[] args)
         {
-            Baza b = new Baza();
+            Base b = new Base();
             /*
             b.dodajUzytkownika("Jan", "Nowak", "now123ak", "matematyka5", 10001, 's');
             b.dodajUzytkownika("Anna", "Kowalska", "annkaaa", "matematyka5", 10002, 's');
@@ -50,8 +50,8 @@ namespace Baza_Danych
             //b.dodajOcene(10002, 5, "matematyka5");
            // b.dodajOcene(10002, 2, "chemia5");
 
-            b.odczytajOceny(10002, "matematyka5");
-            b.odczytajOceny(10002, "chemia5");
+            b.readGrades(10002, "matematyka5");
+            b.readGrades(10002, "chemia5");
 
         }
     }
