@@ -151,46 +151,44 @@ namespace ServerTCP
         /// </summary>
         public void Start()
         {
-            a = new Base();
+           /* a = new Base();
             Admin b = (Admin)a.userDatabase[0];
-            //b.addUser(a, "Jan", "Nowak", "now123ak", "matematyka5", 10001, 's');
-            //b.addUser(a, "Anna", "Kowalska", "annkaaa", "matematyka5", 10002, 's');
-            //b.addUser(a, "Tomasz", "Kruk", "taaaa123", "matematyka5", 10003, 's');
-            //b.addUser(a, "Oliwia", "Wolna", "oli134", "matematyka5", 10004, 's');
-            //b.addUser(a, "Adam", "Gruszka", "wojak16", "matematyka5", 10005, 's');
-            //b.addUser(a, "Aneta", "Miklaszewski", "bsad432", "matematyka5", 10006, 's');
-            //b.addUser(a, "Martyna", "Grys", "kjbdas125", "matematyka5", 10007, 's');
-            //b.addUser(a, "Aleksandra", "Cicha", "124jnouh32", "matematyka5", 10008, 's');
-            //b.addUser(a, "Grzegorz", "Kluska", "dsjfb567", "matematyka5", 10009, 's');
-            //b.addUser(a, "Krzysztof", "Bombka", "fksb29", "matematyka5", 10010, 's');
-            //b.addUser(a, "Karol", "Szymczak", "1kjsd3", "matematyka5", 10011, 's');
-            //b.addUser(a, "Karolina", "Kacperska", "asdiy", "matematyka5", 10012, 's');
-            //b.addUser(a, "Szymon", "Kowal", "198gsa", "matematyka5", 10013, 's');
-            //b.addUser(a, "Lidia", "Kalisiak", "jbjdsf04", "matematyka5", 10014, 's');
-            //b.addUser(a, "Arkadiusz", "Wojtkowiak", "osadb983", "matematyka5", 10015, 's');
-            //b.addUser(a, "Anna", "Bartkowiak", "iusdfg92", "matematyka5", 10016, 's');
-            //b.addUser(a, "Jan", "Nowak", "now123ak", "chemia5", 11001, 's');
-            //b.addUser(a, "Anna", "Kowalska", "annkaaa", "chemia5", 11002, 's');
-            //b.addUser(a, "Tomasz", "Kruk", "taaaa123", "chemia5", 11003, 's');
-            //b.addUser(a, "Oliwia", "Wolna", "oli134", "chemia5", 11004, 's');
-            //b.addUser(a, "Adam", "Gruszka", "wojak16", "chemia5", 11005, 's');
-            //b.addUser(a, "Aneta", "Miklaszewski", "bsad432", "chemia5", 11006, 's');
-            //b.addUser(a, "Martyna", "Grys", "kjbdas125", "chemia5", 11007, 's');
-            //b.addUser(a, "Aleksandra", "Cicha", "124jnouh32", "chemia5", 11008, 's');
-            //b.addUser(a, "Grzegorz", "Kluska", "dsjfb567", "chemia5", 11009, 's');
-            //b.addUser(a, "Krzysztof", "Bombka", "fksb29", "chemia5", 11010, 's');
-            //b.addUser(a, "Karol", "Szymczak", "1kjsd3", "chemia5", 11011, 's');
-            //b.addUser(a, "Karolina", "Kacperska", "asdiy", "chemia5", 11012, 's');
-            //b.addUser(a, "Szymon", "Kowal", "198gsa", "chemia5", 11013, 's');
-            //b.addUser(a, "Lidia", "Kalisiak", "jbjdsf04", "chemia5", 11014, 's');
-            //b.addUser(a, "Arkadiusz", "Wojtkowiak", "osadb983", "chemia5", 11015, 's');
-            //b.addUser(a, "Anna", "Bartkowiak", "iusdfg92", "chemia5", 11016, 's');
-            //b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "matematyka5", 90001, 't');
-            //b.addUser(a, "Anna", "Dziedzic", "kjsdCV24", "chemia5", 90002, 't');
-
-            Console.Write("\nStarting up the server...");
+            b.addUser(a, "Jan", "Nowak", "now123ak", "matematyka5", 10001, 's');
+            b.addUser(a, "Anna", "Kowalska", "annkaaa", "matematyka5", 10002, 's');
+            b.addUser(a, "Tomasz", "Kruk", "taaaa123", "matematyka5", 10003, 's');
+            b.addUser(a, "Oliwia", "Wolna", "oli134", "matematyka5", 10004, 's');
+            b.addUser(a, "Adam", "Gruszka", "wojak16", "matematyka5", 10005, 's');
+            b.addUser(a, "Aneta", "Miklaszewski", "bsad432", "matematyka5", 10006, 's');
+            b.addUser(a, "Martyna", "Grys", "kjbdas125", "matematyka5", 10007, 's');
+            b.addUser(a, "Aleksandra", "Cicha", "124jnouh32", "matematyka5", 10008, 's');
+            b.addUser(a, "Grzegorz", "Kluska", "dsjfb567", "matematyka5", 10009, 's');
+            b.addUser(a, "Krzysztof", "Bombka", "fksb29", "matematyka5", 10010, 's');
+            b.addUser(a, "Karol", "Szymczak", "1kjsd3", "matematyka5", 10011, 's');
+            b.addUser(a, "Karolina", "Kacperska", "asdiy", "matematyka5", 10012, 's');
+            b.addUser(a, "Szymon", "Kowal", "198gsa", "matematyka5", 10013, 's');
+            b.addUser(a, "Lidia", "Kalisiak", "jbjdsf04", "matematyka5", 10014, 's');
+            b.addUser(a, "Arkadiusz", "Wojtkowiak", "osadb983", "matematyka5", 10015, 's');
+            b.addUser(a, "Anna", "Bartkowiak", "iusdfg92", "matematyka5", 10016, 's');
+            b.addUser(a, "Jan", "Nowak", "now123ak", "chemia5", 11001, 's');
+            b.addUser(a, "Anna", "Kowalska", "annkaaa", "chemia5", 11002, 's');
+            b.addUser(a, "Tomasz", "Kruk", "taaaa123", "chemia5", 11003, 's');
+            b.addUser(a, "Oliwia", "Wolna", "oli134", "chemia5", 11004, 's');
+            b.addUser(a, "Adam", "Gruszka", "wojak16", "chemia5", 11005, 's');
+            b.addUser(a, "Aneta", "Miklaszewski", "bsad432", "chemia5", 11006, 's');
+            b.addUser(a, "Martyna", "Grys", "kjbdas125", "chemia5", 11007, 's');
+            b.addUser(a, "Aleksandra", "Cicha", "124jnouh32", "chemia5", 11008, 's');
+            b.addUser(a, "Grzegorz", "Kluska", "dsjfb567", "chemia5", 11009, 's');
+            b.addUser(a, "Krzysztof", "Bombka", "fksb29", "chemia5", 11010, 's');
+            b.addUser(a, "Karol", "Szymczak", "1kjsd3", "chemia5", 11011, 's');
+            b.addUser(a, "Karolina", "Kacperska", "asdiy", "chemia5", 11012, 's');
+            b.addUser(a, "Szymon", "Kowal", "198gsa", "chemia5", 11013, 's');
+            b.addUser(a, "Lidia", "Kalisiak", "jbjdsf04", "chemia5", 11014, 's');
+            b.addUser(a, "Arkadiusz", "Wojtkowiak", "osadb983", "chemia5", 11015, 's');
+            b.addUser(a, "Anna", "Bartkowiak", "iusdfg92", "chemia5", 11016, 's');
+            b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "matematyka5", 90001, 't');
+            b.addUser(a, "Anna", "Dziedzic", "kjsdCV24", "chemia5", 90002, 't');
+                        Console.Write("\nStarting up the server...");*/
             StartListening();
-            Console.Write("\nListening for clients commenced...");
             AcceptClient();
         }
 
@@ -199,7 +197,6 @@ namespace ServerTCP
         /// </summary>
         public void Stop()
         {
-            Console.Write("Stopping the server");
             tcpListener.Stop();
         }
         #endregion

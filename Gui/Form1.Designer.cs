@@ -32,19 +32,17 @@
             this.txtPort = new System.Windows.Forms.Label();
             this.txtIP = new System.Windows.Forms.Label();
             this.btnONOFF = new System.Windows.Forms.Button();
-            this.pRAM = new System.Diagnostics.PerformanceCounter();
-            this.pCPU = new System.Diagnostics.PerformanceCounter();
-            this.timer = new System.Windows.Forms.Timer(this.components);
             this.progressBarRAM = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.progressBarCPU = new System.Windows.Forms.ProgressBar();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblRAM = new System.Windows.Forms.Label();
             this.lblCPU = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pRAM)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pCPU)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.RAM = new System.Diagnostics.PerformanceCounter();
+            this.CPU = new System.Diagnostics.PerformanceCounter();
+            ((System.ComponentModel.ISupportInitialize)(this.RAM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CPU)).BeginInit();
             this.SuspendLayout();
             // 
             // txtPort
@@ -77,21 +75,6 @@
             this.btnONOFF.Text = "Turn ON";
             this.btnONOFF.UseVisualStyleBackColor = true;
             this.btnONOFF.Click += new System.EventHandler(this.btnONOFF_Click_1);
-            // 
-            // pRAM
-            // 
-            this.pRAM.CategoryName = "Memory";
-            this.pRAM.CounterName = "% Committed Bytes in Use";
-            // 
-            // pCPU
-            // 
-            this.pCPU.CategoryName = "processor";
-            this.pCPU.CounterName = "% Processor Time";
-            // 
-            // timer
-            // 
-            this.timer.Interval = 1000;
-            this.timer.Tick += new System.EventHandler(this.timer_Tick_1);
             // 
             // progressBarRAM
             // 
@@ -131,10 +114,6 @@
             this.progressBarCPU.TabIndex = 13;
             this.progressBarCPU.Click += new System.EventHandler(this.progressBarCPU_Click);
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
             // lblRAM
             // 
             this.lblRAM.AutoSize = true;
@@ -155,6 +134,22 @@
             this.lblCPU.TabIndex = 17;
             this.lblCPU.Text = "0%";
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // RAM
+            // 
+            this.RAM.CategoryName = "Memory";
+            this.RAM.CounterName = "% Committed Bytes in Use";
+            // 
+            // CPU
+            // 
+            this.CPU.CategoryName = "Processor";
+            this.CPU.CounterName = "% Processor Time";
+            this.CPU.InstanceName = "_Total";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,9 +166,9 @@
             this.Controls.Add(this.lblCPU);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pRAM)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pCPU)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.RAM)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CPU)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,16 +179,15 @@
         private System.Windows.Forms.Label txtPort;
         private System.Windows.Forms.Label txtIP;
         private System.Windows.Forms.Button btnONOFF;
-        private System.Diagnostics.PerformanceCounter pRAM;
-        private System.Diagnostics.PerformanceCounter pCPU;
-        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ProgressBar progressBarRAM;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ProgressBar progressBarCPU;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label lblRAM;
         private System.Windows.Forms.Label lblCPU;
+        private System.Windows.Forms.Timer timer1;
+        private System.Diagnostics.PerformanceCounter RAM;
+        private System.Diagnostics.PerformanceCounter CPU;
     }
 }
 

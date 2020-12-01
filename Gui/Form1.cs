@@ -38,12 +38,6 @@ namespace Gui
 
         }
 
-        
-
-        private void UserControl1_Load(object sender, EventArgs e)
-        {
-            timer.Start();
-        }
 
         private void lblCPU_Click(object sender, EventArgs e)
         {
@@ -97,14 +91,20 @@ namespace Gui
 
         }
 
-        private void timer_Tick_1(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            float fcpu = pCPU.NextValue();
-            float fram = pRAM.NextValue();
+            float fcpu = CPU.NextValue();
+            float fram = RAM.NextValue();
             progressBarCPU.Value = (int)fcpu;
             progressBarRAM.Value = (int)fram;
             lblCPU.Text = string.Format("{0:0.00}%", fcpu);
             lblRAM.Text = string.Format("{0:0.00}%", fram);
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            timer1.Start();
         }
     }
 }
