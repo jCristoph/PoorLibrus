@@ -35,7 +35,7 @@ namespace DatabaseLib
 			grades = new int[20];
 		}
 
-		public string readGradesAllGroupBySubject(Base b, int index)
+		public string readGradesAllGroupBySubject(Base b)
 		{
 			StringBuilder sb = new StringBuilder();
 			List<User> studentList = b.userDatabase.FindAll(x => x.UserType.Equals('s') && x.Subject.Equals(this.subject));
@@ -45,6 +45,7 @@ namespace DatabaseLib
                 {
 					sb.Append("Oto oceny ucznia " + student.FirstName + " " + student.Name + " z przedmiotu " + this.subject + ": ");
 					sb.Append(student.readGrades());
+					sb.Append("\r\n");
 				}
 				return sb.ToString();
 			}
