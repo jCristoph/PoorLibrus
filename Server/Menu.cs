@@ -75,7 +75,8 @@ namespace Server
                     switch (command[0])
                     {
                         case ("CHECK"):
-                            loggedUser.readGrades();
+                            string grades = "Oceny: " + loggedUser.readGrades() + "\r\n";
+                            write(grades);
                             break;
                         case ("NEW_PASS"):
                             loggedUser.changePassword(base_, command[1]);
@@ -114,7 +115,8 @@ namespace Server
                             ((Teacher)loggedUser).changePassword(base_, command[1]);
                             break;
                         case ("STUDENTLIST"):
-                            ((Teacher)loggedUser).readGradesAllGroupBySubject(base_, Int32.Parse(command[1]));
+                            string grades = ((Teacher)loggedUser).readGradesAllGroupBySubject(base_);
+                            write(grades);
                             break;
                         case ("LOGOUT"):
                             login.currentStatus = Statuses.logged_out;
@@ -131,36 +133,43 @@ namespace Server
         {
             while (login.currentStatus.Equals(Statuses.logged))
             {
-                write("USERLIST - lista wszystkich uzytkownikow\n\r" +
+                string[] command = checkMessage(read());
+                if (command[0] == "\r\n")
+                {
+                    write("USERLIST - lista wszystkich uzytkownikow\n\r" +
                       "EDIT <indeks_studenta> <przedmiot> <indeks_oceny> <nowa ocena> - edytuj ocene\n\r" +
                       "ADDUSER <imie> <nazwisko> <haslo> <przedmiot> <indeks> <typ uzytkownika(s lub t)> - dodaj uzytkownika\n\r" +
                       "REMOVE <indeks> - usun uzytkownika z bazy\n\r" +
                       "NEW_PASS - <nowe_haslo> - zmien haslo\n\r" +
                       "LOGOUT - wylogowanie\n\r");
-                string[] command = checkMessage(read());
-                switch (command[0])
-                {
-                    case ("USERLIST"):
-                        ((Admin)loggedUser).listAllUsers(base_);
-                        break;
-                    case ("EDIT"):
-                        ((Admin)loggedUser).editGrades(base_, Int32.Parse(command[1]), command[2], Int32.Parse(command[3]), Int32.Parse(command[4]));
-                        break;
-                    case ("ADDUSER"):
-                        ((Admin)loggedUser).addUser(base_, command[1], command[2], command[3], command[4], Int32.Parse(command[5]), Char.Parse(command[6]));
-                        break;
-                    case ("REMOVE"):
-                        ((Admin)loggedUser).deleteUser(base_, Int32.Parse(command[1]));
-                        break;
-                    case ("NEW_PASS"):
-                        ((Admin)loggedUser).changePassword(base_, command[1]);
-                        break;
-                    case ("LOGOUT"):
-                        login.currentStatus = Statuses.logged_out;
-                        break;
-                    default:
-                        break;
                 }
+                else { 
+                    switch (command[0])
+                    {
+                        case ("USERLIST"):
+                            ((Admin)loggedUser).listAllUsers(base_);
+                            break;
+                        case ("EDIT"):
+                            ((Admin)loggedUser).editGrades(base_, Int32.Parse(command[1]), command[2], Int32.Parse(command[3]), Int32.Parse(command[4]));
+                            break;
+                        case ("ADDUSER"):
+                            ((Admin)loggedUser).addUser(base_, command[1], command[2], command[3], command[4], Int32.Parse(command[5]), Char.Parse(command[6]));
+                            break;
+                        case ("REMOVE"):
+                            ((Admin)loggedUser).deleteUser(base_, Int32.Parse(command[1]));
+                            break;
+                        case ("NEW_PASS"):
+                            ((Admin)loggedUser).changePassword(base_, command[1]);
+                            break;
+                        case ("LOGOUT"):
+                            login.currentStatus = Statuses.logged_out;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                
+                
             }
         }
 
