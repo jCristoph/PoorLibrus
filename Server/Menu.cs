@@ -36,7 +36,7 @@ namespace Server
                 {
                     login = new LoginStatus(base_, command[1], command[2]);
                     login.Login();
-                    char[] charsToTrim = { 's', 't' };
+                    char[] charsToTrim = { 's', 't', 'A' };
                     char userType = command[1][0];
                     int index = Int32.Parse(command[1].Trim(charsToTrim));
                     if (login.currentStatus.Equals(Statuses.logged))
@@ -147,7 +147,7 @@ namespace Server
                     switch (command[0])
                     {
                         case ("USERLIST"):
-                            ((Admin)loggedUser).listAllUsers(base_);
+                            write(((Admin)loggedUser).listAllUsers(base_));
                             break;
                         case ("EDIT"):
                             ((Admin)loggedUser).editGrades(base_, Int32.Parse(command[1]), command[2], Int32.Parse(command[3]), Int32.Parse(command[4]));
@@ -176,7 +176,14 @@ namespace Server
         private string read()
         {
             byte[] buffer = new byte[1024];
-            int message_size = stream.Read(buffer, 0, 1024);
+            try
+            {
+                int message_size = stream.Read(buffer, 0, 1024);
+            } 
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
             string s = System.Text.Encoding.UTF8.GetString(buffer);
             s = s.Replace("\0", "");
             return s;
