@@ -24,29 +24,36 @@ namespace Server
 
         public void start()
         {
+            write("Witaj na serwerze PoorLibrus!\r\nZaloguj sie podajac LOGIN <login> <haslo>: ");
             while(true)
             {
-                write("Witaj na serwerze PoorLibrus!\n\rZaloguj sie podajac LOGIN <login> <haslo>: ");
                 string[] command = checkMessage(read());
-                login = new LoginStatus(base_, command[1], command[2]);
-                login.Login();
-                char[] charsToTrim = { 's', 't' };
-                char userType = command[1][0];
-                int index = Int32.Parse(command[1].Trim(charsToTrim));
-                if (login.currentStatus.Equals(Statuses.logged))
+                if (command[0] == "\r\n" || command.Length < 3)
                 {
-                    loggedUser = base_.userDatabase.Find(x => x.Index.Equals(index));
-                    switch (userType)
+                    write("Zaloguj sie ponownie podajac LOGIN <login> <haslo>: ");
+                }
+                else
+                {
+                    login = new LoginStatus(base_, command[1], command[2]);
+                    login.Login();
+                    char[] charsToTrim = { 's', 't' };
+                    char userType = command[1][0];
+                    int index = Int32.Parse(command[1].Trim(charsToTrim));
+                    if (login.currentStatus.Equals(Statuses.logged))
                     {
-                        case 's':
-                            studentMenu();
-                            break;
-                        case 't':
-                            teacherMenu();
-                            break;
-                        default:
-                            adminMenu();
-                            break;
+                        loggedUser = base_.userDatabase.Find(x => x.Index.Equals(index));
+                        switch (userType)
+                        {
+                            case 's':
+                                studentMenu();
+                                break;
+                            case 't':
+                                teacherMenu();
+                                break;
+                            default:
+                                adminMenu();
+                                break;
+                        }
                     }
                 }
             }
@@ -56,27 +63,31 @@ namespace Server
         {
             while (login.currentStatus.Equals(Statuses.logged))
             {
-               
                 string[] command = checkMessage(read());
-                switch (command[0])
+                if (command[0] == "\r\n")
                 {
-                    case ("CHECK"):
-                        loggedUser.readGrades();
-                        break;
-                    case ("NEW_PASS"):
-                        loggedUser.changePassword(base_, command[1]);
-                        break;
-                    case ("LOGOUT"):
-                        login.currentStatus = Statuses.logged_out;
-                        break;
-                    case ("\r\n"):
-                        write("CHECK - sprawdz oceny\n\r" +
-                        "NEW_PASS < nowe_haslo > -zmien haslo\n\r" +
-                        "LOGOUT - wylogowanie\n\r");
-                        break;
-                    default:
-                        break;
+                    write("CHECK - sprawdz oceny\r\n" +
+                        "NEW_PASS < nowe_haslo > -zmien haslo\r\n" +
+                        "LOGOUT - wylogowanie\r\n");
                 }
+                else
+                {
+                    switch (command[0])
+                    {
+                        case ("CHECK"):
+                            loggedUser.readGrades();
+                            break;
+                        case ("NEW_PASS"):
+                            loggedUser.changePassword(base_, command[1]);
+                            break;
+                        case ("LOGOUT"):
+                            login.currentStatus = Statuses.logged_out;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                
             }
         }
 
@@ -84,28 +95,35 @@ namespace Server
         {
             while (login.currentStatus.Equals(Statuses.logged))
             {
-                write("ADDGRADE <ocena> <indeks_studenta> - dodaj ocene do studenta\n\r" +
-                      "NEW_PASS <nowe_haslo>\n\r" +
-                      "STUDENTLIST - lista studentow\n\r" +
-                      "LOGOUT - wylogowanie\n\r");
                 string[] command = checkMessage(read());
-                switch (command[0])
+                if (command[0] == "\r\n")
                 {
-                    case ("ADDGRADE"):
-                        ((Teacher)loggedUser).addGrade(base_, Int32.Parse(command[1]), Int32.Parse(command[2]));
-                        break;
-                    case ("NEW_PASS"):
-                        ((Teacher)loggedUser).changePassword(base_, command[1]);
-                        break;
-                    case ("STUDENTLIST"):
-                        ((Teacher)loggedUser).readGradesAllGroupBySubject(base_, Int32.Parse(command[1]));
-                        break;
-                    case ("LOGOUT"):
-                        login.currentStatus = Statuses.logged_out;
-                        break;
-                    default:
-                        break;
+                    write("ADDGRADE <indeks_studenta> <ocena> - dodaj ocene do studenta\n\r" +
+                        "NEW_PASS <nowe_haslo>\r\n" +
+                        "STUDENTLIST - lista studentow\r\n" +
+                        "LOGOUT - wylogowanie\r\n");
                 }
+                else
+                {
+                    switch (command[0])
+                    {
+                        case ("ADDGRADE"):
+                            ((Teacher)loggedUser).addGrade(base_, Int32.Parse(command[1]), Int32.Parse(command[2]));
+                            break;
+                        case ("NEW_PASS"):
+                            ((Teacher)loggedUser).changePassword(base_, command[1]);
+                            break;
+                        case ("STUDENTLIST"):
+                            ((Teacher)loggedUser).readGradesAllGroupBySubject(base_, Int32.Parse(command[1]));
+                            break;
+                        case ("LOGOUT"):
+                            login.currentStatus = Statuses.logged_out;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                
             }
         }
 

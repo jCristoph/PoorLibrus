@@ -152,7 +152,9 @@ namespace ServerTCP
         public void Start()
         {
             a = new Base();
+           
             Admin b = (Admin)a.userDatabase[0];
+            //a.userDatabase.Clear();
             //b.addUser(a, "Jan", "Nowak", "now123ak", "matematyka5", 10001, 's');
             //b.addUser(a, "Anna", "Kowalska", "annkaaa", "matematyka5", 10002, 's');
             //b.addUser(a, "Tomasz", "Kruk", "taaaa123", "matematyka5", 10003, 's');
