@@ -44,6 +44,7 @@ namespace Server
                     if (login.currentStatus.Equals(Statuses.logged))
                     {
                         loggedUser = base_.userDatabase.FindAll(x => x.Index.Equals(index));
+                        baseLoggedUser = loggedUser[0];
                         switch (userType)
                         {
                             case 's':
@@ -110,7 +111,7 @@ namespace Server
                 if (command[0] == "\r\n")
                 {
                     write("Twoj obecny przedmiot to " + baseLoggedUser.Subject +
-                        "ADDGRADE <indeks_studenta> <ocena> - dodaj ocene do studenta\n\r" +
+                        "\n\rADDGRADE <indeks_studenta> <ocena> - dodaj ocene do studenta\n\r" +
                         "NEW_PASS <nowe_haslo>\r\n" +
                         "STUDENTLIST - lista studentow\r\n" +
                         "LOGOUT - wylogowanie\r\n");
@@ -216,7 +217,15 @@ namespace Server
         private void write(string toWrite)
         {
             byte[] buffer = ASCIIEncoding.UTF8.GetBytes(toWrite);
-            stream.Write(buffer, 0, buffer.Length);
+            try
+            {
+                stream.Write(buffer, 0, buffer.Length);
+            } 
+            catch (Exception e)
+            {
+
+            }
+            
         }
 
         private string[] checkMessage(string s)
