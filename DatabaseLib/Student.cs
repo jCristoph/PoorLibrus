@@ -66,6 +66,7 @@ namespace DatabaseLib
 		public override string readGrades()
 		{
 			StringBuilder sb = new StringBuilder();
+			sb.Append(Subject + ": ");
 			foreach (var grade in grades)
 			{
 				if (grade != 0)

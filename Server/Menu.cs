@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 using DatabaseLib;
 using LoginLib;
 
+
 namespace Server
 {
     class Menu
     {
         Base base_;
-        User loggedUser;
+        List<User> loggedUser;
+        User baseLoggedUser;
         LoginStatus login;
         NetworkStream stream;
 
@@ -41,7 +43,7 @@ namespace Server
                     int index = Int32.Parse(command[1].Trim(charsToTrim));
                     if (login.currentStatus.Equals(Statuses.logged))
                     {
-                        loggedUser = base_.userDatabase.Find(x => x.Index.Equals(index));
+                        loggedUser = base_.userDatabase.FindAll(x => x.Index.Equals(index));
                         switch (userType)
                         {
                             case 's':
@@ -75,11 +77,19 @@ namespace Server
                     switch (command[0])
                     {
                         case ("CHECK"):
-                            string grades = "Oceny: " + loggedUser.readGrades() + "\r\n";
-                            write(grades);
+                            StringBuilder grades = new StringBuilder("Oceny: ");
+                            foreach(User a in loggedUser) {
+                                grades.Append(a.readGrades());
+                                grades.Append("\r\n");
+                            }
+                            write(grades.ToString());
                             break;
                         case ("NEW_PASS"):
-                            loggedUser.changePassword(base_, command[1]);
+                            foreach (User a in loggedUser)
+                            {
+                                a.changePassword(base_, command[1]);
+                            }
+                            
                             break;
                         case ("LOGOUT"):
                             login.currentStatus = Statuses.logged_out;
@@ -99,7 +109,8 @@ namespace Server
                 string[] command = checkMessage(read());
                 if (command[0] == "\r\n")
                 {
-                    write("ADDGRADE <indeks_studenta> <ocena> - dodaj ocene do studenta\n\r" +
+                    write("Twoj obecny przedmiot to " + baseLoggedUser.Subject +
+                        "ADDGRADE <indeks_studenta> <ocena> - dodaj ocene do studenta\n\r" +
                         "NEW_PASS <nowe_haslo>\r\n" +
                         "STUDENTLIST - lista studentow\r\n" +
                         "LOGOUT - wylogowanie\r\n");
@@ -109,14 +120,27 @@ namespace Server
                     switch (command[0])
                     {
                         case ("ADDGRADE"):
-                            ((Teacher)loggedUser).addGrade(base_, Int32.Parse(command[1]), Int32.Parse(command[2]));
+                            ((Teacher)baseLoggedUser).addGrade(base_, Int32.Parse(command[1]), Int32.Parse(command[2]));
                             break;
                         case ("NEW_PASS"):
-                            ((Teacher)loggedUser).changePassword(base_, command[1]);
+                            foreach (User a in loggedUser)
+                            {
+                                ((Teacher)a).changePassword(base_, command[1]);
+                            }
                             break;
                         case ("STUDENTLIST"):
-                            string grades = ((Teacher)loggedUser).readGradesAllGroupBySubject(base_);
+                            string grades = ((Teacher)baseLoggedUser).readGradesAllGroupBySubject(base_);
                             write(grades);
+                            break;
+                        case ("CHNGSUBJECT"):
+                            foreach (User a in loggedUser)
+                            {
+                                if (a.Subject.Equals(command[1]))
+                                {
+                                    baseLoggedUser = a;
+                                    break;
+                                }
+                            }
                             break;
                         case ("LOGOUT"):
                             login.currentStatus = Statuses.logged_out;
@@ -147,19 +171,19 @@ namespace Server
                     switch (command[0])
                     {
                         case ("USERLIST"):
-                            write(((Admin)loggedUser).listAllUsers(base_));
+                            write(((Admin)baseLoggedUser).listAllUsers(base_));
                             break;
                         case ("EDIT"):
-                            ((Admin)loggedUser).editGrades(base_, Int32.Parse(command[1]), command[2], Int32.Parse(command[3]), Int32.Parse(command[4]));
+                            ((Admin)baseLoggedUser).editGrades(base_, Int32.Parse(command[1]), command[2], Int32.Parse(command[3]), Int32.Parse(command[4]));
                             break;
                         case ("ADDUSER"):
-                            ((Admin)loggedUser).addUser(base_, command[1], command[2], command[3], command[4], Int32.Parse(command[5]), Char.Parse(command[6]));
+                            ((Admin)baseLoggedUser).addUser(base_, command[1], command[2], command[3], command[4], Int32.Parse(command[5]), Char.Parse(command[6]));
                             break;
                         case ("REMOVE"):
-                            ((Admin)loggedUser).deleteUser(base_, Int32.Parse(command[1]));
+                            ((Admin)baseLoggedUser).deleteUser(base_, Int32.Parse(command[1]));
                             break;
                         case ("NEW_PASS"):
-                            ((Admin)loggedUser).changePassword(base_, command[1]);
+                            ((Admin)baseLoggedUser).changePassword(base_, command[1]);
                             break;
                         case ("LOGOUT"):
                             login.currentStatus = Statuses.logged_out;
