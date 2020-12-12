@@ -114,6 +114,7 @@ namespace Server
                         "\n\rADDGRADE <indeks_studenta> <ocena> - dodaj ocene do studenta\n\r" +
                         "NEW_PASS <nowe_haslo>\r\n" +
                         "STUDENTLIST - lista studentow\r\n" +
+                        "CHNGSUBJECT <nazwa_przedmiotu>\r\n" +
                         "LOGOUT - wylogowanie\r\n");
                 }
                 else
