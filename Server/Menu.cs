@@ -26,13 +26,12 @@ namespace Server
 
         public void start()
         {
-            write("Witaj na serwerze PoorLibrus!\r\nZaloguj sie podajac LOGIN <login> <haslo>: ");
             while(true)
             {
                 string[] command = checkMessage(read());
                 if (command[0] == "\r\n" || command.Length < 3)
                 {
-                    write("Zaloguj sie ponownie podajac LOGIN <login> <haslo>: ");
+                    //write("Zaloguj sie ponownie podajac LOGIN <login> <haslo>: ");
                 }
                 else
                 {
@@ -48,12 +47,15 @@ namespace Server
                         switch (userType)
                         {
                             case 's':
+                                write("s");
                                 studentMenu();
                                 break;
                             case 't':
+                                write("t");
                                 teacherMenu();
                                 break;
                             default:
+                                write("a");
                                 adminMenu();
                                 break;
                         }
@@ -64,21 +66,22 @@ namespace Server
 
         private void studentMenu()
         {
+            StringBuilder grades = new StringBuilder("Oceny: \n");
+            foreach (User a in loggedUser)
+            {
+                grades.Append(a.readGrades());
+                grades.Append("\n");
+            }
+            write(grades.ToString());
+
             while (login.currentStatus.Equals(Statuses.logged))
             {
                 string[] command = checkMessage(read());
-                if (command[0] == "\r\n")
-                {
-                    write("CHECK - sprawdz oceny\r\n" +
-                        "NEW_PASS < nowe_haslo > -zmien haslo\r\n" +
-                        "LOGOUT - wylogowanie\r\n");
-                }
-                else
-                {
+
                     switch (command[0])
                     {
                         case ("CHECK"):
-                            StringBuilder grades = new StringBuilder("Oceny: ");
+                            grades = new StringBuilder("Oceny: \n");
                             foreach(User a in loggedUser) {
                                 grades.Append(a.readGrades());
                                 grades.Append("\r\n");
@@ -98,8 +101,6 @@ namespace Server
                         default:
                             break;
                     }
-                }
-                
             }
         }
 
