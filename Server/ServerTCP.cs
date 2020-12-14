@@ -154,11 +154,12 @@ namespace ServerTCP
             a = new Base();
            
             Admin b = (Admin)a.userDatabase[0];
+            /*a.userDatabase.Clear();
             /*
              * Przy pierwszym uruchomieniu serwera trzeba stworzyć baze danych czyli odkomentować poniższe linijki.
              * przy nastepnym uruchomieniu ponizszy kod powinien byc zakomentowany aby nie dublowac bazy danych
-             */
-            /*b.addUser(a, "Jan", "Nowak", "now123ak", "matematyka5", 10001, 's');
+             
+            b.addUser(a, "Jan", "Nowak", "now123ak", "matematyka5", 10001, 's');
             b.addUser(a, "Anna", "Kowalska", "annkaaa", "matematyka5", 10002, 's');
             b.addUser(a, "Tomasz", "Kruk", "taaaa123", "matematyka5", 10003, 's');
             b.addUser(a, "Oliwia", "Wolna", "oli134", "matematyka5", 10004, 's');
@@ -197,8 +198,9 @@ namespace ServerTCP
            b.editGrades(a, 10001, "chemia5", 2, 5);
            b.editGrades(a, 10001, "matematyka5", 0, 1);
            b.editGrades(a, 10001, "matematyka5", 1, 3);
-           b.editGrades(a, 10001, "matematyka5", 2, 2);*/
-           // b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "polski6", 90001, 't');
+           b.editGrades(a, 10001, "matematyka5", 2, 2);
+            a.sync();*/
+           //b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "polski6", 90001, 't');
 
             Console.Write("\nStarting up the server...");
             StartListening();

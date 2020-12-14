@@ -41,11 +41,13 @@ namespace DatabaseLib
 			List<User> studentList = b.userDatabase.FindAll(x => x.UserType.Equals('s') && x.Subject.Equals(this.subject));
 			try
 			{
-				foreach(var student in studentList)
+				int i = 0;
+				foreach (var student in studentList)
                 {
-					sb.Append("Oto oceny ucznia " + student.FirstName + " " + student.Name + " z przedmiotu " + this.subject + ": ");
+					sb.Append(i+". " + student.FirstName + " " + student.Name + " z przedmiotu ");
 					sb.Append(student.readGrades());
 					sb.Append("\r\n");
+					i++;
 				}
 				return sb.ToString();
 			}

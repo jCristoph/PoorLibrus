@@ -72,7 +72,7 @@ namespace DatabaseLib
 				if (grade != 0)
 				{
 					sb.Append(grade);
-					sb.Append(" ");
+					sb.Append(", ");
 				}
 			}
 			return sb.ToString();
