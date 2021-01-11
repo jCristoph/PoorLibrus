@@ -66,15 +66,16 @@ namespace DatabaseLib
 		public override string readGrades()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append(Subject + ": ");
+			sb.Append(Subject + " ");
 			foreach (var grade in grades)
 			{
 				if (grade != 0)
 				{
 					sb.Append(grade);
-					sb.Append(", ");
+					sb.Append(" ");
 				}
 			}
+			sb.Append("~ ");
 			return sb.ToString();
 		}
 

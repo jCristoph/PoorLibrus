@@ -155,7 +155,7 @@ namespace ServerTCP
             a = new Base();
            
             Admin b = (Admin)a.userDatabase[0];
-            a.userDatabase.Clear();
+            /*a.userDatabase.Clear();
             
              //* Przy pierwszym uruchomieniu serwera trzeba stworzyć baze danych czyli odkomentować poniższe linijki.
              //* przy nastepnym uruchomieniu ponizszy kod powinien byc zakomentowany aby nie dublowac bazy danych
@@ -200,8 +200,8 @@ namespace ServerTCP
            b.editGrades(a, 10001, "matematyka5", 0, 1);
            b.editGrades(a, 10001, "matematyka5", 1, 3);
            b.editGrades(a, 10001, "matematyka5", 2, 2);
-            a.sync();
-           //b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "polski6", 90001, 't');
+            a.sync();*/
+            //b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "polski6", 90001, 't');
 
             StartListening();
             AcceptClient();

@@ -35,7 +35,6 @@ namespace DatabaseLib
         public void sync()
         {
             Files.saveFile(userDatabase);
-            Console.WriteLine("Zapisano do pliku!");
         }
 
         public int length()

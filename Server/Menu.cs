@@ -31,12 +31,6 @@ namespace Server
                 string[] command = checkMessage(read());
                 try
                 {
-                    /*if (command[0] == "\r\n" || command.Length < 3)
-                    {
-                        //write("Zaloguj sie ponownie podajac LOGIN <login> <haslo>: ");
-                    }
-                    else
-                    {*/
                     if(command.Length == 3)
                     {
                         login = new LoginStatus(base_, command[1], command[2]);
@@ -66,8 +60,6 @@ namespace Server
                         }
                         else
                             throw new ArgumentException("Zla ilosc argumentow");
-                        
-                       // }
                     }
                 }
                 catch (ArgumentException e)
@@ -79,11 +71,10 @@ namespace Server
 
         private void studentMenu()
         {
-            StringBuilder grades = new StringBuilder("\n");
+            StringBuilder grades = new StringBuilder();
             foreach (User a in loggedUser)
             {
                 grades.Append(a.readGrades());
-                grades.Append("\n");
             }
             write(grades.ToString());
 
@@ -93,7 +84,7 @@ namespace Server
                 switch (command[0])
                 {
                     case ("CHECK"):
-                        grades = new StringBuilder("Oceny: \n");
+                        grades = new StringBuilder();
                         foreach (User a in loggedUser)
                         {
                             grades.Append(a.readGrades());
