@@ -29,41 +29,57 @@ namespace Server
             while(true)
             {
                 string[] command = checkMessage(read());
-                
-                login = new LoginStatus(base_, command[1], command[2]);
-                login.Login();
-                char[] charsToTrim = { 's', 't', 'A' };
-                char userType = command[1][0];
-                int index = Int32.Parse(command[1].Trim(charsToTrim));
-                if (login.currentStatus.Equals(Statuses.logged))
+                try
                 {
-                    loggedUser = base_.userDatabase.FindAll(x => x.Index.Equals(index));
-                    baseLoggedUser = loggedUser[0];
-                    switch (userType)
+                    /*if (command[0] == "\r\n" || command.Length < 3)
                     {
-                        case 's':
-                            write("s");
-                            studentMenu();
-                            break;
-                        case 't':
-                            write("t");
-                            teacherMenu();
-                            break;
-                        default:
-                            write("a");
-                            adminMenu();
-                            break;
+                        //write("Zaloguj sie ponownie podajac LOGIN <login> <haslo>: ");
+                    }
+                    else
+                    {*/
+                    if(command.Length == 3)
+                    {
+                        login = new LoginStatus(base_, command[1], command[2]);
+                        login.Login();
+                        char[] charsToTrim = { 's', 't', 'A' };
+                        char userType = command[1][0];
+                        int index = Int32.Parse(command[1].Trim(charsToTrim));
+                        if (login.currentStatus.Equals(Statuses.logged))
+                        {
+                            loggedUser = base_.userDatabase.FindAll(x => x.Index.Equals(index));
+                            baseLoggedUser = loggedUser[0];
+                            switch (userType)
+                            {
+                                case 's':
+                                    write("s");
+                                    studentMenu();
+                                    break;
+                                case 't':
+                                    write("t");
+                                    teacherMenu();
+                                    break;
+                                default:
+                                    write("a");
+                                    adminMenu();
+                                    break;
+                            }
+                        }
+                        else
+                            throw new ArgumentException("Zla ilosc argumentow");
+                        
+                       // }
                     }
                 }
-                else
-                    write("x");
-                
+                catch (ArgumentException e)
+                {
+                    Console.WriteLine(e);
+                }
             }
         }
 
         private void studentMenu()
         {
-            StringBuilder grades = new StringBuilder("Oceny: \n");
+            StringBuilder grades = new StringBuilder("\n");
             foreach (User a in loggedUser)
             {
                 grades.Append(a.readGrades());
@@ -74,30 +90,38 @@ namespace Server
             while (login.currentStatus.Equals(Statuses.logged))
             {
                 string[] command = checkMessage(read());
-
-                    switch (command[0])
-                    {
-                        case ("CHECK"):
-                            grades = new StringBuilder("Oceny: \n");
-                            foreach(User a in loggedUser) {
-                                grades.Append(a.readGrades());
-                                grades.Append("\r\n");
-                            }
-                            write(grades.ToString());
-                            break;
-                        case ("NEW_PASS"):
-                            foreach (User a in loggedUser)
+                switch (command[0])
+                {
+                    case ("CHECK"):
+                        grades = new StringBuilder("Oceny: \n");
+                        foreach (User a in loggedUser)
+                        {
+                            grades.Append(a.readGrades());
+                            grades.Append("\r\n");
+                        }
+                        write(grades.ToString());
+                        break;
+                    case ("NEW_PASS"):
+                        foreach (User a in loggedUser)
+                        {
+                            try
                             {
                                 a.changePassword(base_, command[1]);
                             }
-                            
-                            break;
-                        case ("LOGOUT"):
-                            login.currentStatus = Statuses.logged_out;
-                            break;
-                        default:
-                            break;
-                    }
+                            catch (ArgumentException e)
+                            {
+                                Console.WriteLine(e);
+                            }
+                        }
+
+                        break;
+                    case ("LOGOUT"):
+                        login.currentStatus = Statuses.logged_out;
+                        break;
+                    default:
+                        break;
+                }
+
             }
         }
 
@@ -106,7 +130,7 @@ namespace Server
             while (login.currentStatus.Equals(Statuses.logged))
             {
                 string[] command = checkMessage(read());
-                if (command[0] == "\r\n")
+                /*if (command[0] == "\r\n")
                 {
                     write("Twoj obecny przedmiot to " + baseLoggedUser.Subject +
                         "\n\rADDGRADE <indeks_studenta> <ocena> - dodaj ocene do studenta\n\r" +
@@ -116,39 +140,50 @@ namespace Server
                         "LOGOUT - wylogowanie\r\n");
                 }
                 else
-                {
-                    switch (command[0])
+                {*/
+                    try
                     {
-                        case ("ADDGRADE"):
-                            ((Teacher)baseLoggedUser).addGrade(base_, Int32.Parse(command[1]), Int32.Parse(command[2]));
-                            break;
-                        case ("NEW_PASS"):
-                            foreach (User a in loggedUser)
-                            {
-                                ((Teacher)a).changePassword(base_, command[1]);
-                            }
-                            break;
-                        case ("STUDENTLIST"):
-                            string grades = ((Teacher)baseLoggedUser).readGradesAllGroupBySubject(base_);
-                            write(grades);
-                            break;
-                        case ("CHNGSUBJECT"):
-                            foreach (User a in loggedUser)
-                            {
-                                if (a.Subject.Equals(command[1]))
+                        switch (command[0])
+                        {
+                            case ("SUBJECTS"):
+                                write(teacherSubjects());
+                                break;
+                            case ("ADDGRADE"):
+                                ((Teacher)baseLoggedUser).addGrade(base_, Int32.Parse(command[1]), Int32.Parse(command[2]));
+                                break;
+                            case ("NEW_PASS"):
+                                foreach (User a in loggedUser)
                                 {
-                                    baseLoggedUser = a;
-                                    break;
+                                    ((Teacher)a).changePassword(base_, command[1]);
                                 }
-                            }
-                            break;
-                        case ("LOGOUT"):
-                            login.currentStatus = Statuses.logged_out;
-                            break;
-                        default:
-                            break;
+                                break;
+                            case ("STUDENTLIST"):
+                                string grades = ((Teacher)baseLoggedUser).readGradesAllGroupBySubject(base_);
+                                write(grades);
+                                break;
+                            case ("CHNGSUBJECT"):
+                                foreach (User a in loggedUser)
+                                {
+                                    if (a.Subject.Equals(command[1]))
+                                    {
+                                        baseLoggedUser = a;
+                                        break;
+                                    }
+                                }
+                                break;
+                            case ("LOGOUT"):
+                                login.currentStatus = Statuses.logged_out;
+                                break;
+                            default:
+                                break;
+                        }
                     }
-                }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e);
+                    }
+
+                //}
                 
             }
         }
@@ -158,18 +193,23 @@ namespace Server
             while (login.currentStatus.Equals(Statuses.logged))
             {
                 string[] command = checkMessage(read());
-                if (command[0] == "\r\n")
+                /* if (command[0] == "\r\n")
+                 {
+                     write("USERLIST - lista wszystkich uzytkownikow\n\r" +
+                       "EDIT <indeks_studenta> <przedmiot> <indeks_oceny> <nowa ocena> - edytuj ocene\n\r" +
+                       "ADDUSER <imie> <nazwisko> <haslo> <przedmiot> <indeks> <typ uzytkownika(s lub t)> - dodaj uzytkownika\n\r" +
+                       "REMOVE <indeks> - usun uzytkownika z bazy\n\r" +
+                       "NEW_PASS - <nowe_haslo> - zmien haslo\n\r" +
+                       "LOGOUT - wylogowanie\n\r");
+                 }
+                 else { */
+                try
                 {
-                    write("USERLIST - lista wszystkich uzytkownikow\n\r" +
-                      "EDIT <indeks_studenta> <przedmiot> <indeks_oceny> <nowa ocena> - edytuj ocene\n\r" +
-                      "ADDUSER <imie> <nazwisko> <haslo> <przedmiot> <indeks> <typ uzytkownika(s lub t)> - dodaj uzytkownika\n\r" +
-                      "REMOVE <indeks> - usun uzytkownika z bazy\n\r" +
-                      "NEW_PASS - <nowe_haslo> - zmien haslo\n\r" +
-                      "LOGOUT - wylogowanie\n\r");
-                }
-                else { 
                     switch (command[0])
                     {
+                        case ("USERS"):
+                            write(((Admin)baseLoggedUser).listAllUsers(base_).Length.ToString());
+                            break;
                         case ("USERLIST"):
                             write(((Admin)baseLoggedUser).listAllUsers(base_));
                             break;
@@ -192,6 +232,12 @@ namespace Server
                             break;
                     }
                 }
+                catch (ArgumentException e)
+                {
+                    Console.WriteLine(e);
+                }
+
+            //}
                 
                 
             }
@@ -230,6 +276,16 @@ namespace Server
         private string[] checkMessage(string s)
         {
             return s.Split(' ');
+        }
+        private string teacherSubjects()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach(var e in loggedUser) 
+            {
+                sb.Append(e.Subject);
+                sb.Append(" ");
+            }
+            return sb.ToString();
         }
     }
 }

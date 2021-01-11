@@ -125,6 +125,7 @@ namespace ServerTCP
                 TransmissionDataDelegate transmissionDelegate = new TransmissionDataDelegate(BeginDataTransmission);
                 transmissionDelegate.BeginInvoke(stream, TransmissionCallback, tcpClient);
                 clientCounter++;
+
             }
         }
 
@@ -154,10 +155,10 @@ namespace ServerTCP
             a = new Base();
            
             Admin b = (Admin)a.userDatabase[0];
-            /*a.userDatabase.Clear();
-            /*
-             * Przy pierwszym uruchomieniu serwera trzeba stworzyć baze danych czyli odkomentować poniższe linijki.
-             * przy nastepnym uruchomieniu ponizszy kod powinien byc zakomentowany aby nie dublowac bazy danych
+            a.userDatabase.Clear();
+            
+             //* Przy pierwszym uruchomieniu serwera trzeba stworzyć baze danych czyli odkomentować poniższe linijki.
+             //* przy nastepnym uruchomieniu ponizszy kod powinien byc zakomentowany aby nie dublowac bazy danych
              
             b.addUser(a, "Jan", "Nowak", "now123ak", "matematyka5", 10001, 's');
             b.addUser(a, "Anna", "Kowalska", "annkaaa", "matematyka5", 10002, 's');
@@ -193,26 +194,15 @@ namespace ServerTCP
             b.addUser(a, "Anna", "Bartkowiak", "iusdfg92", "chemia5", 10016, 's');
             b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "matematyka5", 90001, 't');
             b.addUser(a, "Anna", "Dziedzic", "kjsdCV24", "chemia5", 90002, 't');
-            b.editGrades(a, 10001, "chemia5", 3, 2);
-           b.editGrades(a, 10001, "chemia5", 4, 3);
-           b.editGrades(a, 10001, "chemia5", 5, 2);
-           
-            b.editGrades(a, 10001, "chemia5", 3, 2);
-            b.editGrades(a, 10001, "chemia5", 4, 3);
-            b.editGrades(a, 10001, "chemia5", 5, 2);
-
-            b.editGrades(a, 10001, "matematyka5", 1, 4);
-            
-            b.editGrades(a, 10001, "matematyka5", 2, 5);
-            b.editGrades(a, 10001, "matematyka5", 3, 2);
-            b.editGrades(a, 10001, "matematyka5", 4, 5);
-            b.editGrades(a, 10001, "matematyka5", 5, 4);
+           b.editGrades(a, 10001, "chemia5", 0, 4);
+           b.editGrades(a, 10001, "chemia5", 1, 3);
+           b.editGrades(a, 10001, "chemia5", 2, 5);
+           b.editGrades(a, 10001, "matematyka5", 0, 1);
+           b.editGrades(a, 10001, "matematyka5", 1, 3);
+           b.editGrades(a, 10001, "matematyka5", 2, 2);
             a.sync();
-            b.editGrades(a, 10001, "matematyka5", 5, 4);
-            */
-            //b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "polski6", 90001, 't');
-            
-            Console.Write("\nStarting up the server...");
+           //b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "polski6", 90001, 't');
+
             StartListening();
             AcceptClient();
         }
