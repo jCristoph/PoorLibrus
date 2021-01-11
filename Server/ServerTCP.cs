@@ -200,8 +200,8 @@ namespace ServerTCP
            b.editGrades(a, 10001, "matematyka5", 1, 3);
            b.editGrades(a, 10001, "matematyka5", 2, 2);
             a.sync();*/
-           //b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "polski6", 90001, 't');
-
+            //b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "polski6", 90001, 't');
+            //b.addUser(a, "Jan", "Nowak", "now123ak", "polski6", 10001, 's');
             Console.Write("\nStarting up the server...");
             StartListening();
             AcceptClient();
