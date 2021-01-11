@@ -1,6 +1,6 @@
 ﻿namespace Gui
 {
-    partial class Form1
+    partial class BoskiSerwer
     {
         /// <summary>
         /// Wymagana zmienna projektanta.
@@ -150,7 +150,7 @@
             this.CPU.CounterName = "% Processor Time";
             this.CPU.InstanceName = "_Total";
             // 
-            // Form1
+            // BoskiSerwer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -164,8 +164,8 @@
             this.Controls.Add(this.progressBarCPU);
             this.Controls.Add(this.lblRAM);
             this.Controls.Add(this.lblCPU);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "BoskiSerwer";
+            this.Text = "BoskiSerwer";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.RAM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CPU)).EndInit();

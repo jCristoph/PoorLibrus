@@ -14,10 +14,10 @@ using ServerTCP;
 
 namespace Gui
 {
-    public partial class Form1 : Form
+    public partial class BoskiSerwer : Form
     {
         AsyncAwaitServer aas;
-        public Form1()
+        public BoskiSerwer()
         {
             InitializeComponent();
         }
