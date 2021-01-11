@@ -193,15 +193,25 @@ namespace ServerTCP
             b.addUser(a, "Anna", "Bartkowiak", "iusdfg92", "chemia5", 10016, 's');
             b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "matematyka5", 90001, 't');
             b.addUser(a, "Anna", "Dziedzic", "kjsdCV24", "chemia5", 90002, 't');
-           b.editGrades(a, 10001, "chemia5", 0, 4);
-           b.editGrades(a, 10001, "chemia5", 1, 3);
-           b.editGrades(a, 10001, "chemia5", 2, 5);
-           b.editGrades(a, 10001, "matematyka5", 0, 1);
-           b.editGrades(a, 10001, "matematyka5", 1, 3);
-           b.editGrades(a, 10001, "matematyka5", 2, 2);
-            a.sync();*/
-           //b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "polski6", 90001, 't');
+            b.editGrades(a, 10001, "chemia5", 3, 2);
+           b.editGrades(a, 10001, "chemia5", 4, 3);
+           b.editGrades(a, 10001, "chemia5", 5, 2);
+           
+            b.editGrades(a, 10001, "chemia5", 3, 2);
+            b.editGrades(a, 10001, "chemia5", 4, 3);
+            b.editGrades(a, 10001, "chemia5", 5, 2);
 
+            b.editGrades(a, 10001, "matematyka5", 1, 4);
+            
+            b.editGrades(a, 10001, "matematyka5", 2, 5);
+            b.editGrades(a, 10001, "matematyka5", 3, 2);
+            b.editGrades(a, 10001, "matematyka5", 4, 5);
+            b.editGrades(a, 10001, "matematyka5", 5, 4);
+            a.sync();
+            b.editGrades(a, 10001, "matematyka5", 5, 4);
+            */
+            //b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "polski6", 90001, 't');
+            
             Console.Write("\nStarting up the server...");
             StartListening();
             AcceptClient();

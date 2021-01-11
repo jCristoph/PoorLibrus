@@ -29,38 +29,35 @@ namespace Server
             while(true)
             {
                 string[] command = checkMessage(read());
-                if (command[0] == "\r\n" || command.Length < 3)
+                
+                login = new LoginStatus(base_, command[1], command[2]);
+                login.Login();
+                char[] charsToTrim = { 's', 't', 'A' };
+                char userType = command[1][0];
+                int index = Int32.Parse(command[1].Trim(charsToTrim));
+                if (login.currentStatus.Equals(Statuses.logged))
                 {
-                    //write("Zaloguj sie ponownie podajac LOGIN <login> <haslo>: ");
-                }
-                else
-                {
-                    login = new LoginStatus(base_, command[1], command[2]);
-                    login.Login();
-                    char[] charsToTrim = { 's', 't', 'A' };
-                    char userType = command[1][0];
-                    int index = Int32.Parse(command[1].Trim(charsToTrim));
-                    if (login.currentStatus.Equals(Statuses.logged))
+                    loggedUser = base_.userDatabase.FindAll(x => x.Index.Equals(index));
+                    baseLoggedUser = loggedUser[0];
+                    switch (userType)
                     {
-                        loggedUser = base_.userDatabase.FindAll(x => x.Index.Equals(index));
-                        baseLoggedUser = loggedUser[0];
-                        switch (userType)
-                        {
-                            case 's':
-                                write("s");
-                                studentMenu();
-                                break;
-                            case 't':
-                                write("t");
-                                teacherMenu();
-                                break;
-                            default:
-                                write("a");
-                                adminMenu();
-                                break;
-                        }
+                        case 's':
+                            write("s");
+                            studentMenu();
+                            break;
+                        case 't':
+                            write("t");
+                            teacherMenu();
+                            break;
+                        default:
+                            write("a");
+                            adminMenu();
+                            break;
                     }
                 }
+                else
+                    write("x");
+                
             }
         }
 
