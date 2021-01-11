@@ -99,7 +99,6 @@ namespace Gui
             progressBarRAM.Value = (int)fram;
             lblCPU.Text = string.Format("{0:0.00}%", fcpu);
             lblRAM.Text = string.Format("{0:0.00}%", fram);
-
         }
 
         private void Form1_Load(object sender, EventArgs e)

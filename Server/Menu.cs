@@ -66,7 +66,7 @@ namespace Server
 
         private void studentMenu()
         {
-            StringBuilder grades = new StringBuilder("Oceny: \n");
+            StringBuilder grades = new StringBuilder("\n");
             foreach (User a in loggedUser)
             {
                 grades.Append(a.readGrades());
