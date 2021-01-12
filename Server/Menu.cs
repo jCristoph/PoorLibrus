@@ -64,7 +64,7 @@ namespace Server
                 }
                 catch (ArgumentException e)
                 {
-                    Console.WriteLine(e);
+                    write(e.ToString());
                 }
             }
         }
