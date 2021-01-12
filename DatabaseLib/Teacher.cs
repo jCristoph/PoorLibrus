@@ -44,9 +44,8 @@ namespace DatabaseLib
 				int i = 0;
 				foreach (var student in studentList)
                 {
-					sb.Append(i+". " + student.FirstName + " " + student.Name + " z przedmiotu ");
+					sb.Append(i+" " + student.FirstName + " " + student.Name + " ");
 					sb.Append(student.readGrades());
-					sb.Append("\r\n");
 					i++;
 				}
 				return sb.ToString();
