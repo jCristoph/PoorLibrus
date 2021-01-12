@@ -59,7 +59,10 @@ namespace Server
                             }
                         }
                         else
+                        {
+                            write("~");
                             throw new ArgumentException("Zla ilosc argumentow");
+                        }
                     }
                 }
                 catch (ArgumentException e)
@@ -102,6 +105,7 @@ namespace Server
                             catch (ArgumentException e)
                             {
                                 Console.WriteLine(e);
+                                write("~");
                             }
                         }
 
@@ -184,16 +188,6 @@ namespace Server
             while (login.currentStatus.Equals(Statuses.logged))
             {
                 string[] command = checkMessage(read());
-                /* if (command[0] == "\r\n")
-                 {
-                     write("USERLIST - lista wszystkich uzytkownikow\n\r" +
-                       "EDIT <indeks_studenta> <przedmiot> <indeks_oceny> <nowa ocena> - edytuj ocene\n\r" +
-                       "ADDUSER <imie> <nazwisko> <haslo> <przedmiot> <indeks> <typ uzytkownika(s lub t)> - dodaj uzytkownika\n\r" +
-                       "REMOVE <indeks> - usun uzytkownika z bazy\n\r" +
-                       "NEW_PASS - <nowe_haslo> - zmien haslo\n\r" +
-                       "LOGOUT - wylogowanie\n\r");
-                 }
-                 else { */
                 try
                 {
                     switch (command[0])
@@ -226,11 +220,7 @@ namespace Server
                 catch (ArgumentException e)
                 {
                     Console.WriteLine(e);
-                }
-
-            //}
-                
-                
+                }               
             }
         }
 
