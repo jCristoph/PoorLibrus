@@ -30,7 +30,8 @@ namespace DatabaseLib
 			StringBuilder sb = new StringBuilder();
 			foreach(var user in b.userDatabase)
             {
-				sb.Append(user.ToString()+"\n");
+				sb.Append(user.ToString());
+				sb.Append(" ~ ");
             }
 			return sb.ToString();
         }
