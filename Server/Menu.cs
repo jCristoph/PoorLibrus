@@ -154,6 +154,8 @@ namespace Server
                                 break;
                             case ("STUDENTLIST"):
                                 string grades = ((Teacher)baseLoggedUser).readGradesAllGroupBySubject(base_);
+                                if(grades == String.Empty)
+                                    grades += "~";
                                 write(grades);
                                 break;
                             case ("CHNGSUBJECT"):

@@ -155,11 +155,11 @@ namespace ServerTCP
             a = new Base();
            
             Admin b = (Admin)a.userDatabase[0];
+
+
+            // Przy pierwszym uruchomieniu serwera trzeba stworzyć baze danych czyli odkomentować poniższe linijki.
+            // przy nastepnym uruchomieniu ponizszy kod powinien byc zakomentowany aby nie dublowac bazy danych
             /*a.userDatabase.Clear();
-            
-             //* Przy pierwszym uruchomieniu serwera trzeba stworzyć baze danych czyli odkomentować poniższe linijki.
-             //* przy nastepnym uruchomieniu ponizszy kod powinien byc zakomentowany aby nie dublowac bazy danych
-             
             b.addUser(a, "Jan", "Nowak", "now123ak", "matematyka5", 10001, 's');
             b.addUser(a, "Anna", "Kowalska", "annkaaa", "matematyka5", 10002, 's');
             b.addUser(a, "Tomasz", "Kruk", "taaaa123", "matematyka5", 10003, 's');
@@ -194,15 +194,17 @@ namespace ServerTCP
             b.addUser(a, "Anna", "Bartkowiak", "iusdfg92", "chemia5", 10016, 's');
             b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "matematyka5", 90001, 't');
             b.addUser(a, "Anna", "Dziedzic", "kjsdCV24", "chemia5", 90002, 't');
-           b.editGrades(a, 10001, "chemia5", 0, 4);
-           b.editGrades(a, 10001, "chemia5", 1, 3);
-           b.editGrades(a, 10001, "chemia5", 2, 5);
-           b.editGrades(a, 10001, "matematyka5", 0, 1);
-           b.editGrades(a, 10001, "matematyka5", 1, 3);
-           b.editGrades(a, 10001, "matematyka5", 2, 2);
+            b.editGrades(a, 10001, "chemia5", 0, 4);
+            b.editGrades(a, 10001, "chemia5", 1, 3);
+            b.editGrades(a, 10001, "chemia5", 2, 5);
+            b.editGrades(a, 10001, "matematyka5", 0, 1);
+            b.editGrades(a, 10001, "matematyka5", 1, 3);
+            b.editGrades(a, 10001, "matematyka5", 2, 2);
+            b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "polski6", 90001, 't');
+            b.addUser(a, "Jan", "Nowak", "now123ak", "polski6", 10001, 's');
+            b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "fizyka2", 90001, 't');
             a.sync();*/
-            //b.addUser(a, "Czeslaw", "Kaminski", "Nauczyciel1", "polski6", 90001, 't');
-
+            
             StartListening();
             AcceptClient();
         }
