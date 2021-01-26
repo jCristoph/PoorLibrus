@@ -105,7 +105,7 @@ namespace Server
                             catch (ArgumentException e)
                             {
                                 Console.WriteLine(e);
-                                write("~");
+                                write("error 1");
                             }
                         }
 
@@ -178,6 +178,7 @@ namespace Server
                     catch (ArgumentException e)
                     {
                         Console.WriteLine(e);
+                        write("error 2");
                     }
 
                 //}
@@ -205,6 +206,7 @@ namespace Server
                             break;
                         case ("ADDUSER"):
                             ((Admin)baseLoggedUser).addUser(base_, command[1], command[2], command[3], command[4], Int32.Parse(command[5]), Char.Parse(command[6]));
+                            write(command[5]);
                             break;
                         case ("REMOVE"):
                             ((Admin)baseLoggedUser).deleteUser(base_, Int32.Parse(command[1]));
@@ -222,6 +224,7 @@ namespace Server
                 catch (ArgumentException e)
                 {
                     Console.WriteLine(e);
+                    write("error 3");
                 }               
             }
         }
